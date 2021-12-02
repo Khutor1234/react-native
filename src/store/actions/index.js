@@ -1,14 +1,45 @@
 
-const fetchData = (items) => {
+const loadPosts = (items) => {
   return {
-      type: 'LOADED_DATA',
+      type: 'LOADED_POSTS',
       payload: items
   };
 };
 
-export const loadData = () => async(dispatch) => {
-  const postsData = await fetch('https://jsonplaceholder.typicode.com/posts');
+const loadComments = (items) => {
+  return {
+      type: 'LOADED_COMMENTS',
+      payload: items
+  };
+};
+
+const loadUsers = (items) => {
+  return {
+      type: 'LOADED_USERS',
+      payload: items
+  };
+};
+
+export const deleteItem = (id) => {
+  return {
+    type: 'DELETE_ITEM',
+    payload: id
+  };
+}
+
+export const loadData = (dispatch) => async() => {
+  const commentsData = await (await fetch('https://jsonplaceholder.typicode.com/comments/'));
+  const commentsDataJson = commentsData.json()
+  commentsDataJson
+    .then((data) => dispatch(loadComments(data)))
+
+  const usersData = await fetch('https://jsonplaceholder.typicode.com/users/')
+  const usersDataJson = usersData.json()
+  usersDataJson
+    .then((data) => dispatch(loadUsers(data)))
+
+  const postsData = await (await fetch('https://jsonplaceholder.typicode.com/posts'));
   const postsDataJson = postsData.json()
   postsDataJson
-    .then((data) => dispatch(fetchData(data)))
+    .then((data) => dispatch(loadPosts(data)))
 };
