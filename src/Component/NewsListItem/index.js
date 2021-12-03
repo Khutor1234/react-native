@@ -27,16 +27,19 @@ const NewsListItem = ({post, admin}) => {
         <Text style = {styles.body}>{post.body}</Text>
       </View>
       <Pressable style = {styles.button} onPress={onPressHandler}>
-        <Text  style = {styles.text}>{visible ? 'Hide' : 'Show'} comments</Text>
+        <Text style = {styles.text}>{visible ? 'Hide' : 'Show'} comments</Text>
       </Pressable>
       {
-        visible ? 
+        visible && post.comments &&
         <FlatList 
           keyExtractor = {item => item.id.toString()}
           data = {post.comments}
           renderItem = {({item}) => <CommentsListItem comments = {item}/>}
-        />
-        : null
+        /> 
+      }
+      {
+        visible && !post.comments &&
+        <Text style = {styles.warning}>There are no comments yet</Text>
       }
     </View>
   )

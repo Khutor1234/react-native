@@ -41,6 +41,9 @@ const styles = StyleSheet.create({
     color: 'rgb(134,163,244)',
     textTransform: 'uppercase',
     fontWeight: '700'
+  },
+  warning: {
+    color: '#010165',
   }
 })
 

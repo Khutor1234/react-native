@@ -41,6 +41,7 @@ const updateNewsList = (state, action) => {
               comments: comments
           }
         })
+        console.log(updatePosts, 'up')
         return {
           ...state.newsList,
           posts: updatePosts
@@ -51,6 +52,28 @@ const updateNewsList = (state, action) => {
         return {
           ...state.newsList,
           posts: newItems
+        }
+
+      case 'ADD_ITEM':
+        console.log(payload, 'pa')
+        const newPost = {
+          id: Date.now(),
+          title: payload.title,
+          body: payload.body,
+          userId: 333,
+          user: {
+            email: "Admin@kory.org",
+            id: 333,
+            name: "Patricia Lebsack",
+            username: "Admin",
+          }
+        }
+        return {
+          ...state.newsList,
+          posts: [
+            newPost,
+            ...state.newsList.posts,
+          ]
         }
 
       default:

@@ -27,6 +27,16 @@ export const deleteItem = (id) => {
   };
 }
 
+export const addItem = (title, body) => {
+  return {
+    type: 'ADD_ITEM',
+    payload: {
+      title,
+      body
+    }
+  };
+}
+
 export const loadData = (dispatch) => async() => {
   const commentsData = await (await fetch('https://jsonplaceholder.typicode.com/comments/'));
   const commentsDataJson = commentsData.json()
