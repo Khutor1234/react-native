@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   }, 
   input: {
     minWidth: 150,
-    marginBottom: 20,
+    marginBottom: 10,
     borderBottomWidth: 2,
     borderBottomColor: '#010165',
     height: 40,
@@ -41,6 +41,22 @@ const styles = StyleSheet.create({
   close: {
     color: '#010165',
     alignItems: 'flex-end',
+  },
+  warning: {
+    color: 'red',
+    marginBottom: 20,
+    fontSize: 15
+  },
+  reset: {
+    backgroundColor: '#010165',
+    borderRadius: 20,
+    padding: 7,
+    alignItems: 'center',
+    minWidth: 100,
+    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'center',
+    marginBottom: 20
   }
 })
 

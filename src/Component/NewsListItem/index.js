@@ -14,7 +14,7 @@ const NewsListItem = ({post, admin}) => {
 
   return( 
     <View style = {styles.item}>
-      { admin ? <AdminActions id = {post.id}/> : null }
+      { admin ? <AdminActions id = {post.id} post={ post }/> : null }
       <View style = {styles.profile}>
         <Text style = {styles.email}>{post.user.username}</Text>
         <Image
@@ -38,7 +38,7 @@ const NewsListItem = ({post, admin}) => {
         /> 
       }
       {
-        visible && !post.comments &&
+        visible && (post.comments.length < 1) &&
         <Text style = {styles.warning}>There are no comments yet</Text>
       }
     </View>

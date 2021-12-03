@@ -37,6 +37,33 @@ export const addItem = (title, body) => {
   };
 }
 
+export const filter = (type, value) => {
+  return {
+    type: 'FILTER_ITEM',
+    payload: {
+      type, 
+      value
+    }
+  };
+}
+
+export const resetFilter = () => {
+  return {
+    type: 'RESET_FILTER'
+  }
+}
+
+export const saveChanges = (id, title, body) => {
+  return {
+    type: 'SAVE_CHANGES',
+    payload: {
+      id,
+      title, 
+      body
+    }
+  }
+}
+
 export const loadData = (dispatch) => async() => {
   const commentsData = await (await fetch('https://jsonplaceholder.typicode.com/comments/'));
   const commentsDataJson = commentsData.json()

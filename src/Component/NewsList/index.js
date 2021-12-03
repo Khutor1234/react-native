@@ -7,7 +7,7 @@ import NewsListItem from '../NewsListItem';
 import AdminFilters from '../AdminFilters';
 import styles from './styles';
 
-const NewsList = ({posts, loadData, admin}) => {
+const NewsList = ({posts, loadData, admin, filteredPosts}) => {
   
   useEffect(() => {
     loadData()
@@ -18,16 +18,17 @@ const NewsList = ({posts, loadData, admin}) => {
       { admin ? <AdminFilters/> : null }
       <FlatList 
         keyExtractor = {item => item.id.toString()}
-        data = {posts}
+        data = {(filteredPosts && admin)? filteredPosts : posts}
         renderItem = {({item}) => <NewsListItem post = {item} admin={admin}/>}
       />
     </View>
   )
 }
 
-const mapStateToProps = ({newsList: {posts}}) => {
+const mapStateToProps = ({newsList: {posts, filteredPosts}}) => {
   return{
-    posts
+    posts,
+    filteredPosts
   }
 };
 
