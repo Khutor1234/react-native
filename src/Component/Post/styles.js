@@ -1,14 +1,14 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  item: {
+  post: {
     padding: 10, 
-    backgroundColor: '#fff',
-    marginBottom: 10,
-    borderWidth: 2,
-    borderColor: 'rgb(134,163,244)',
-    borderRadius: 20,
+    backgroundColor: 'rgb(240,243,254)',
   },
+  comments: {
+    padding: 10,
+    paddingBottom: 340
+  }
 })
 
 export default styles

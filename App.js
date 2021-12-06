@@ -8,6 +8,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './src/screens/HomeScreen'
 import MainScreen from './src/screens/MainScreen';
 import PostScreen from './src/screens/PostScreen';
+import AdminScreen from './src/screens/AdminScreen';
 import store from './src/store/store';
 
 LogBox.ignoreLogs(['Warning: ...']);
@@ -22,9 +23,7 @@ export default function App() {
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Main" component={MainScreen} />
           <Stack.Screen name="Post" component={PostScreen} />
-          <Stack.Screen name="Admin">
-            {() => <MainScreen admin />}
-          </Stack.Screen>
+          <Stack.Screen name="Admin" component={AdminScreen}/>
         </Stack.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />

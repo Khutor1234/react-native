@@ -12,11 +12,13 @@ const Post = ({postId, posts}) => {
   return(
     <View style = {styles.post}>
       <NewsListItem post={post}/>
-      <FlatList 
-        keyExtractor = {item => item.id.toString()}
-        data = {post.comments}
-        renderItem = {({item}) => <CommentsListItem comments = {item}/>}
-      /> 
+      <View style = {styles.comments}>
+        <FlatList 
+          keyExtractor = {item => item.id.toString()}
+          data = {post.comments}
+          renderItem = {({item}) => <CommentsListItem comments = {item}/>}
+        /> 
+      </View>
     </View>
   )
 }

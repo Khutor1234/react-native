@@ -2,12 +2,12 @@ import React from 'react';
 
 import NewsList from '../../Component/NewsList';
 
-const MainScreen = ({ navigation }) => {
+const AdminScreen = ({ navigation }) => {
   const goToPost = post => {
     navigation.navigate('Post', { postId: post.id })
   }
  
-  return <NewsList onOpen = {goToPost} />
+  return <NewsList admin onOpen = {goToPost} />
 }
 
-export default MainScreen
+export default AdminScreen

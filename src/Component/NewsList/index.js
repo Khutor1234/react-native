@@ -2,24 +2,30 @@ import React, {useEffect} from 'react';
 import { View, FlatList } from 'react-native'
 import { connect } from 'react-redux';
 
-import { loadData } from '../../store/actions/index';
+import { loadData, countViews } from '../../store/actions/index';
 import NewsListItem from '../NewsListItem';
 import AdminFilters from '../AdminFilters';
 import styles from './styles';
 
-const NewsList = ({posts, loadData, admin, filteredPosts, onOpen}) => {
+const NewsList = ({posts, loadData, countViews, admin, filteredPosts, onOpen}) => {
 
   useEffect(() => {
     loadData()
   }, []);
 
+  const onOpenPage = (post) => {
+    onOpen(post)
+    countViews(post.id)
+    console.log(post,'post')
+  }
+ 
   return(
-    <View style = {styles.newsList}>
+    <View style = {admin ? styles.newsListAdmin : styles.newsList}>
       { admin ? <AdminFilters/> : null }
       <FlatList 
         keyExtractor = {item => item.id.toString()}
         data = {(filteredPosts && admin)? filteredPosts : posts}
-        renderItem = {({item}) => <NewsListItem post = {item} admin={admin} onOpen={onOpen}/>}
+        renderItem = {({item}) => <NewsListItem post = {item} onOpen={onOpenPage} admin={admin} />}
       />
     </View>
   )
@@ -34,7 +40,8 @@ const mapStateToProps = ({newsList: {posts, filteredPosts}}) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadData: loadData(dispatch)
+    loadData: loadData(dispatch),
+    countViews: (id) => dispatch(countViews(id))
   }
 }
 

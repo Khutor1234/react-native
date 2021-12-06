@@ -28,6 +28,10 @@ const AdminFilters = ({addItem, filter, resetFilter}) => {
     setWarning(false)
   }
 
+  const onResetFilter = () => {
+    resetFilter()
+  }
+
   return (
     <View style = {styles.wrapper}>
       <Pressable style = {styles.button} onPress={onOpen}>
@@ -45,7 +49,7 @@ const AdminFilters = ({addItem, filter, resetFilter}) => {
               placeholder='Enter a title'/>
             <TextInput 
               style = {styles.input}
-              onChangeText = {setBodyValue} 
+              onChangeText = {text => setBodyValue(text)} 
               value = {bodyValue} 
               placeholder='Enter a body'/>
 
@@ -73,7 +77,7 @@ const AdminFilters = ({addItem, filter, resetFilter}) => {
         style = {styles.input} 
         placeholder='Filter by resent posts'/>
 
-      <Pressable style = {styles.reset} onPress = {resetFilter}>
+      <Pressable style = {styles.reset} onPress = {onResetFilter}>
         <Text style = {styles.text}>Reset filters</Text>
       </Pressable>
     </View>

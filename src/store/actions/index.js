@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const loadPosts = (items) => {
   return {
@@ -64,19 +65,36 @@ export const saveChanges = (id, title, body) => {
   }
 }
 
+export const countViews  = (id) => {
+  return {
+    type: 'COUNT_VIEWS',
+    payload: id
+  }
+}
+
 export const loadData = (dispatch) => async() => {
-  const commentsData = await (await fetch('https://jsonplaceholder.typicode.com/comments/'));
-  const commentsDataJson = commentsData.json()
-  commentsDataJson
-    .then((data) => dispatch(loadComments(data)))
+  const data = await AsyncStorage.getItem('posts-store')
+  const items = JSON.parse(data)
+  console.log(JSON.parse(data),'AsyncStorage data')
 
-  const usersData = await fetch('https://jsonplaceholder.typicode.com/users/')
-  const usersDataJson = usersData.json()
-  usersDataJson
-    .then((data) => dispatch(loadUsers(data)))
+  // if(items === null){
+    const commentsData = await (await fetch('https://jsonplaceholder.typicode.com/comments/'));
+    const commentsDataJson = commentsData.json()
+    commentsDataJson
+      .then((data) => dispatch(loadComments(data)))
 
-  const postsData = await (await fetch('https://jsonplaceholder.typicode.com/posts'));
-  const postsDataJson = postsData.json()
-  postsDataJson
-    .then((data) => dispatch(loadPosts(data)))
+    const usersData = await fetch('https://jsonplaceholder.typicode.com/users/')
+    const usersDataJson = usersData.json()
+    usersDataJson
+      .then((data) => dispatch(loadUsers(data)))
+
+    const postsData = await (await fetch('https://jsonplaceholder.typicode.com/posts'));
+    const postsDataJson = postsData.json()
+    postsDataJson
+      .then((data) => dispatch(loadPosts(data)))
+  // } else {
+  //   dispatch(loadComments(items.newsList.comments))
+  //   dispatch(loadUsers(items.newsList.users))
+  //   dispatch(loadPosts(items.newsList.posts))
+  // }
 };
