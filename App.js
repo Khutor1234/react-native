@@ -5,8 +5,9 @@ import { LogBox } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import NewsList from './src/Component/NewsList';
-import Home from './src/Component/Home';
+import HomeScreen from './src/screens/HomeScreen'
+import MainScreen from './src/screens/MainScreen';
+import PostScreen from './src/screens/PostScreen';
 import store from './src/store/store';
 
 LogBox.ignoreLogs(['Warning: ...']);
@@ -18,10 +19,11 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Main" component={NewsList} />
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Main" component={MainScreen} />
+          <Stack.Screen name="Post" component={PostScreen} />
           <Stack.Screen name="Admin">
-            {() => <NewsList admin />}
+            {() => <MainScreen admin />}
           </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>

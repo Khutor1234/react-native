@@ -3,7 +3,7 @@ import { Text, View, Pressable } from 'react-native';
 
 import styles from './styles';
 
-const Home = ({ navigation }) => {
+const HomeScreen = ({ navigation }) => {
   return (
     <View style = {styles.navbar}>
       <Pressable style = {styles.button} onPress={() => navigation.navigate('Main')}>
@@ -16,4 +16,4 @@ const Home = ({ navigation }) => {
   );
 }
 
-export default Home
+export default HomeScreen

@@ -47,12 +47,6 @@ const AdminActions = ({ id, post, deleteItem, saveChanges}) => {
   );
 }
 
-const mapStateToProps = ({newsList: {changedItem}}) => {
-  return{
-    changedItem
-  }
-};
-
 const mapDispatchToProps = (dispatch) => {
   return {
     deleteItem: (id) => dispatch(deleteItem(id)),
@@ -60,5 +54,5 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminActions);
+export default connect(null, mapDispatchToProps)(AdminActions);
 
